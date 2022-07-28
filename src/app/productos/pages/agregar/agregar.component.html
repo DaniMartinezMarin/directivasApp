@@ -14,7 +14,9 @@
     </div>
     <div class="col-auto">
       <span error-msg
-            *ngIf="isInvalidField('nombre')">
+            [color]="color"
+            [mensajeTexto]="nombre"
+            [invalido]="isInvalidField('nombre')">
       </span>
     </div>
 
@@ -23,8 +25,15 @@
   <div class="row mt-5">
     <div class="col">
       <button class="btn btn-primary"
-              type="submit">
-        Guardar
+              type="submit"
+              (click)="cambiarNombre()">
+        Cambiar nombre
+      </button>
+      &nbsp;
+      <button class="btn btn-primary"
+              type="submit"
+              (click)="cambiarColor()">
+        Cambiar color
       </button>
     </div>
   </div>
@@ -34,3 +43,12 @@
 <h3 class="mt-5">Formulario</h3>
 <pre>Value: {{miFormulario.value | json}}</pre>
 <pre>Valid: {{miFormulario.valid}}</pre>
+
+<div class="row mt-5"
+      *customIf="miFormulario.valid">
+  <div class="col">
+    <div class="alert alert-primary">
+      Todo Ok!
+    </div>
+  </div>
+</div>
